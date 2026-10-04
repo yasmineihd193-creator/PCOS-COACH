@@ -1,0 +1,19 @@
+# No build step: this is a static site plus serverless functions.
+# "publish = ." serves the repository root, so /index.html, /sw.js, /manifest.json and the icons are all
+# part of the deployed site. This overrides any "Publish directory" typed into the Netlify dashboard.
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# The reminder scheduler (netlify/functions/send-reminder.mjs) declares its own
+# "every minute" schedule in code. Scheduled functions only run on the published deploy.
+
+# The service worker must always be re-checked by the browser (so updates arrive) and may control the whole site.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/"

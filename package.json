@@ -1,0 +1,13 @@
+{
+  "name": "pcos-coach",
+  "private": true,
+  "version": "1.0.0",
+  "description": "PCOS Coach - personal wellness tracker with daily reminder notifications",
+  "dependencies": {
+    "web-push": "^3.6.7",
+    "@netlify/blobs": "^11.1.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
